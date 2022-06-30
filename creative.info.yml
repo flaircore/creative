@@ -1,0 +1,8 @@
+name: 'Creative Blog'
+type: module
+description: 'Creative blog code.'
+core: 8.x
+
+core_version_requirement: ^8 || ^9
+
+package: 'Development'

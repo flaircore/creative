@@ -1,0 +1,8 @@
+services:
+  creative.commands:
+    class: \Drupal\creative\Commands\CreativeCommands
+    tags:
+      - { name: drush.command }
+    arguments: []
+    calls:
+      - [setFaker, []]

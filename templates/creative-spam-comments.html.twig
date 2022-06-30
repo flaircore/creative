@@ -1,0 +1,35 @@
+<!-- Comments list -->
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col">
+      <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+        <div class="card-body p-4">
+          {% for comment in items %}
+            <div class="card mb-4" key="{{ comment.id }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ comment.get('subject').value }}</h5>
+                <div class="card-text">
+                  <p>{{ comment.get('comment_body').value }}</p>
+
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                      <img src="https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.netC/O https://placeholder.com/ " alt="avatar" width="25"
+                           height="25" />
+                      <p class="small mb-0 ms-2">{{ comment.getAuthorName }}</p>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                      <p class="small text-muted m-1">Created:  </p>
+                      <p class="small text-muted m-1"> {{ comment.get('created').value | creative_format_date }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ pager }}
+</div>
+

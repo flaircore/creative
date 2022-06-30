@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implements for the creative module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\creative\Service\Pattern;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function creative_entity_insert(EntityInterface $entity): void {
+  if ($entity->getEntityTypeId() == 'comment') {
+
+    /** @var \Drupal\creative\Service\Pattern $pattern */
+    $pattern = Drupal::getContainer()->get(Pattern::class);
+    $comment_subject = $entity->getSubject();
+    $comment_body = $entity->get('comment_body')->value;
+    if ($pattern->doesMatch($comment_subject)[0] || $pattern->doesMatch($comment_body)[0]) {
+      $entity->set('status', 0);
+      $entity->save();
+    }
+
+  }
+
+}
+
+/**
+ * Implements hook_theme().
+ */
+function creative_theme($existing, $type, $theme, $path): array {
+  return [
+    'creative_spam_comments' => [
+      'render-element' => 'children',
+      // Template == creative-spam-comments.html.twig.
+      'template' => 'creative-spam-comments',
+      'variables' => [
+        'items' => NULL,
+        'pager' => NULL,
+      ],
+    ],
+  ];
+}

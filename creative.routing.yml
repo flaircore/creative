@@ -1,0 +1,7 @@
+creative.spam_comments:
+  path: 'creative/spam-comments'
+  defaults:
+    _controller: '\Drupal\creative\Controller\SpamController::getComments'
+    _title: 'Spam comments'
+  requirements:
+    _permission: 'administer content'
