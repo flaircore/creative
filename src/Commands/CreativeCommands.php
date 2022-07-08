@@ -53,6 +53,7 @@ class CreativeCommands extends DrushCommands {
       throw new UserAbortException('Try again with the number of comments you wish to generate!');
     }
 
+    /** @var \Drupal\Core\Entity\EntityStorageInterface $commentEntity */
     $commentEntity = \Drupal::entityTypeManager()
       ->getStorage('comment');
 
